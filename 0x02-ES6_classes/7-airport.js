@@ -1,7 +1,7 @@
 export default class Airport {
   constructor(name, code) {
-    this.name = name;
-    this.code = code;
+    this._name = name;
+    this._code = code;
   }
 
   // Getter for name
@@ -9,6 +9,7 @@ export default class Airport {
     return this._name;
   }
 
+  // Setter for name
   set name(value) {
     if (typeof value !== 'string') {
       throw new TypeError('Name must be a string');
@@ -21,6 +22,7 @@ export default class Airport {
     return this._code;
   }
 
+  // Setter for code
   set code(value) {
     if (typeof value !== 'string') {
       throw new TypeError('Code must be a string');
@@ -28,7 +30,16 @@ export default class Airport {
     this._code = value;
   }
 
+  // Override the default string description
   toString() {
-    return this._code;
+    return `Airport [${this._code}] { _name: '${this._name}', _code: '${this._code}' }`;
+  }
+
+  // Override the default object string conversion
+  [Symbol.toPrimitive](hint) {
+    if (hint === 'string') {
+      return `Airport [${this._code}] { _name: '${this._name}', _code: '${this._code}' }`;
+    }
+    return null;
   }
 }
