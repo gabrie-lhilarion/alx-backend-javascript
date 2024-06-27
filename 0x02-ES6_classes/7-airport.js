@@ -28,7 +28,6 @@ export default class Airport {
     this._code = value;
   }
 
-  // Override the default string description
   toString() {
     return this._code;
   }
